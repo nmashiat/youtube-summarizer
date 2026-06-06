@@ -9,7 +9,7 @@ import re
 import json
 
 app = Flask(__name__)
-client = Anthropic(api_key="YOUR_API_KEY_HERE")
+client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 def get_video_id(url):
     patterns = [
