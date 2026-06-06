@@ -1,0 +1,6 @@
+flask
+anthropic
+youtube-transcript-api
+openai-whisper
+yt-dlp
+python-dotenv
