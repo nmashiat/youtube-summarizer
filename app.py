@@ -30,7 +30,7 @@ def get_transcript(url, video_id):
         transcript = ' '.join([entry.text for entry in transcript_data])
         return transcript, "captions"
     except Exception:
-        pass
+        return None, None
 
     try:
         with tempfile.TemporaryDirectory() as tmpdir:
