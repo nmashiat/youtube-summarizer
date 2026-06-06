@@ -32,22 +32,6 @@ def get_transcript(url, video_id):
     except Exception:
         return None, None
 
-    try:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            ydl_opts = {
-                'format': 'bestaudio/best',
-                'outtmpl': f'{tmpdir}/audio.%(ext)s',
-                'postprocessors': [{'key': 'FFmpegExtractAudio', 'preferredcodec': 'mp3'}],
-                'quiet': True
-            }
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([f'https://www.youtube.com/watch?v={video_id}'])
-            model = whisper.load_model("base")
-            result = model.transcribe(f'{tmpdir}/audio.mp3')
-            return result["text"], "whisper"
-    except Exception as e:
-        return None, None
-
 @app.route('/')
 def home():
     return render_template('index.html')
